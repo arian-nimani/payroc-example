@@ -58,6 +58,8 @@ export const PaymentContextProvider = ({ children, patientId }) => {
           ([_, v]) => v !== undefined && v !== null
         )
       );
+
+      //THIS IS WHERE THE PAYMENT IS PROCESSED IN OUR BACKEND AFTER IT IS VERIFIED IN THE PAYROC FRAMEWORK
       await mutateAsync({
         token: data?.token,
         ...finalValues,
