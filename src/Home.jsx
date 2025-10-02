@@ -13,9 +13,6 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
   const { handlePayrocPayment } = usePayrocPayment();
   const { togglePaymentMethod } = usePaymentContextApi();
 
-  const handleClick = () => {
-    handlePayrocPayment();
-  };
   return (
     <Modal
       isOpen={isOpen}
@@ -23,7 +20,10 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
         setIsOpen(false);
         togglePaymentMethod("cash");
       }}
-      onSave={handleClick}
+      onSave={async () => {
+        await handlePayrocPayment();
+        setIsOpen(false);
+      }}
     >
       <PaymentMethods />
     </Modal>
@@ -35,9 +35,6 @@ const AlternativePaymentModal = ({ isOpen, setIsOpen }) => {
   const { values } = usePaymentContext();
   const { togglePaymentMethod } = usePaymentContextApi();
 
-  const handleClick = () => {
-    handlePayrocPayment();
-  };
   return (
     <Modal
       isOpen={isOpen}
@@ -45,7 +42,10 @@ const AlternativePaymentModal = ({ isOpen, setIsOpen }) => {
         setIsOpen(false);
         togglePaymentMethod("cash");
       }}
-      onSave={handleClick}
+      onSave={async () => {
+        await handlePayrocPayment();
+        setIsOpen(false);
+      }}
     >
       <select
         value={values.method}

@@ -74,8 +74,6 @@ export const PayrocPaymentProvider = ({ children, method, handlePayment }) => {
 
     payrocInstanceRef.current = instance;
 
-    console.log("instance", instance);
-
     return instance;
   }, []);
 
@@ -121,8 +119,9 @@ export const PayrocPaymentProvider = ({ children, method, handlePayment }) => {
     }
   }, [initACHForm, initCardForm, isQueryLoading, isError, method]);
 
-  const handlePayrocPayment = () => {
-    payrocInstanceRef.current.submit();
+  const handlePayrocPayment = async () => {
+    //THIS SHOULD TRIGGER THE PAYROC FRAMEWORK TO SUBMIT THE PAYMENT
+    await payrocInstanceRef.current.submit();
   };
 
   return (
